@@ -1,0 +1,38 @@
+//menuItem -label "Illuminate! 2D" -parent $gMainWindowMenu -command "openIlluminateWindow()";
+
+//global proc openIlluminateWindow(){
+    
+    string $filename[];
+    
+    // make sure more than one window isn't open simultaneously
+    if (`window -exists illumWindow`) deleteUI illumWindow;
+    
+    window -title "Illuminate! 2D" -widthHeight 300 100 illumWindow; 
+    columnLayout -adjustableColumn true -rowSpacing 20; 
+ 
+    frameLayout -label "File Settings" -collapsable true;
+        text -height 5 ""; // fake padding
+        rowLayout -numberOfColumns 2;
+        text -width 5 "";
+        button -label "Browse" -command "$filename = `fileDialog2 -fileMode 1`;" -width 150;
+        
+    setParent ..;
+    setParent ..;
+    frameLayout -label "Render Settings" -collapsable true;
+        text -height 5 "";
+        rowLayout -numberOfColumns 2;
+        text -width 5 "";
+        columnLayout -rowSpacing 5;
+        checkBox -label "Use default global illumination" -enable false -value true;
+        checkBox -label "Generate intermediate images" -enable true -value true;
+    
+    setParent ..;
+    setParent ..;
+    setParent ..;
+    rowLayout -numberOfColumns 3 -adjustableColumn3 2 -columnAlign 1 "left" -columnAlign 3 "right";
+        button -label "Render" -width 150;
+        text "";
+        button -label "Generate Proxy Mesh" -width 150;
+    
+    showWindow illumWindow;
+//}
