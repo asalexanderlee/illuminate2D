@@ -32,6 +32,7 @@
     rowLayout -numberOfColumns 3 -adjustableColumn3 2 -columnAlign 1 "left" -columnAlign 3 "right";
         button -label "Render" -width 150;
         text "";
+        button -label "Test" -command "maya -file $filename";
         button -label "Generate Proxy Mesh" -width 150;
     
     showWindow illumWindow;
